@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
+const dotenv = require('dotenv');
+dotenv.config();
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(`mongodb+srv://prajyotpawaskar2001:12345@cluster0.tsac4.mongodb.net/janitri`)
-        console.log(`MongoDB connected: ${conn.connection.host}`);
+        const conn = await mongoose.connect(process.env.MONGO_URL)
+        console.log(`MongoDB connected`);
     } catch (error) {
         console.error(`Error: ${error.message}`);
         process.exit(1);
